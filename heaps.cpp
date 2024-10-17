@@ -27,7 +27,36 @@ class Heaps{
             return;
         }
     }
-    // void deletefromHeap
+    void deletefromHeap()
+{
+    arr[1] = arr[size];  // Replace root with the last element
+    size--;              // Decrease heap size
+    int ind = 1;
+
+    while (ind < size)
+    {
+        int leftChild = 2 * ind;
+        int rightChild = 2 * ind + 1;
+
+        // Check if left child exists and is greater than current node
+        if (leftChild < size && arr[ind] < arr[leftChild])
+        {
+            swap(arr[ind], arr[leftChild]);
+            ind = leftChild;
+        }
+        // Check if right child exists and is greater than current node
+        else if (rightChild < size && arr[ind] < arr[rightChild])
+        {
+            swap(arr[ind], arr[rightChild]);
+            ind = rightChild;
+        }
+        else
+        {
+            return;  // Heap is restored
+        }
+    }
+}
+
 
     void print()
     {
@@ -41,9 +70,13 @@ int main()
 {
     Heaps h;
     h.insert(55);
-    h.insert(5);
-    h.insert(40);
-    h.insert(32);
+    h.insert(50);
+    h.insert(53);
+    h.insert(54);
+    h.insert(52);
+    h.print();
+    cout<<" "<<endl;
+    h.deletefromHeap();
     h.print();
     return 0;
 }
